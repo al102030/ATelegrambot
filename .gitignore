@@ -8,6 +8,14 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+Pipfile
+Pipfile.lock
+.gitignore
+.DS_Store
+token.py
+secrets.py
+config/
+*.lock
 build/
 develop-eggs/
 dist/
