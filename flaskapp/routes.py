@@ -10,6 +10,7 @@ bot_name = "asazooonbot"
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == 'POST':
+        print("A message received")
         msg = request.get_json()
         bot_methods.send_message(msg, 112042461)
         # is_text = text_check(msg)
