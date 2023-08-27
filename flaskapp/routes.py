@@ -1,10 +1,10 @@
 
 import os
-from flask import request
+from flask import request, Response
 from flaskapp import app, bot_methods
 # from view.Menus import questions_keyboard, admins_contact, answers, enter_name_keyboard
 
-bot_name = "asazooonbot"
+# bot_name = "asazooonbot"
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -35,38 +35,38 @@ def index():
 
         # elif "callback_query" in msg:
         #     answers_questions(msg)
-        # return Response('ok', status=200)
+        return Response('ok', status=200)
     else:
         return '<h1>Asazoon Telegram Bot</h1>'
 
 
-def text_check(msg):
-    try:
-        is_text = msg['message']['text']
-    except KeyError as error:
-        print("Text not found", error)
-        is_text = None
-    return is_text
+# def text_check(msg):
+#     try:
+#         is_text = msg['message']['text']
+#     except KeyError as error:
+#         print("Text not found", error)
+#         is_text = None
+#     return is_text
 
 
-def greeting(msg):
-    chat_id = msg['message']['chat']['id']
-    greet = "در خدمت شما هستم برای شروع از منوی زیر استفاده نمایید."
-    bot_methods.send_message(greet, chat_id)
+# def greeting(msg):
+#     chat_id = msg['message']['chat']['id']
+#     greet = "در خدمت شما هستم برای شروع از منوی زیر استفاده نمایید."
+#     bot_methods.send_message(greet, chat_id)
 
 
-def registration(chat_id):
-    user_path = os.path.join(
-        "/home/Nb72/dorfak-bot/users", str(chat_id)+".txt")
-    if not os.path.exists(user_path):
-        with open(user_path, "w", encoding="utf-8") as file:
-            file.write(str(chat_id)+"\n0")
-    bot_methods.send_message("لطفا شماره همراه خود را وارد نمایید.", chat_id)
+# def registration(chat_id):
+#     user_path = os.path.join(
+#         "/home/Nb72/dorfak-bot/users", str(chat_id)+".txt")
+#     if not os.path.exists(user_path):
+#         with open(user_path, "w", encoding="utf-8") as file:
+#             file.write(str(chat_id)+"\n0")
+#     bot_methods.send_message("لطفا شماره همراه خود را وارد نمایید.", chat_id)
 
 
-def store_links(chat_id):
-    link = "benjamin.aszn.ir"
-    bot_methods.send_message(link, chat_id)
+# def store_links(chat_id):
+#     link = "benjamin.aszn.ir"
+#     bot_methods.send_message(link, chat_id)
 
 
 # def contact(chat_id):
@@ -128,31 +128,31 @@ def store_links(chat_id):
 #                 "شماره ای که وارد کرده اید نادرست است لطفا شماره تلفن همراه خود را به صورت صحیح وارد کنید\n مانند نمونه زیر\n نمونه: 09123456789", chat_id)
 
 
-def check_name(msg):
-    name = msg['message']['text']
-    chat_id = msg['message']['chat']['id']
-    path = os.path.join(
-        "/home/Nb72/dorfak-bot/users", str(chat_id)+".txt")
-    if f"@{bot_name} /Name:" in name:
-        name = name.replace(f"@{bot_name} /Name:", "")
-        update_info(path, 2, f"{name}")
-        bot_methods.send_message(
-            "نام و نام خانوادگی شما با موفقیت ثبت کردید.", chat_id)
-        with open(path, "r", encoding="utf-8") as file:
-            lines = file.readlines()
-        info = ""
-        for item in lines:
-            info += item.replace("\n", "")
-            info += "\n"
-        bot_methods.send_message(
-            f"شما با اطلاعات زیر در آسازون ثبت نام شدید:\n{info}", chat_id)
-        bot_methods.send_message(f"{info}", -1001971910516)
+# def check_name(msg):
+#     name = msg['message']['text']
+#     chat_id = msg['message']['chat']['id']
+#     path = os.path.join(
+#         "/home/Nb72/dorfak-bot/users", str(chat_id)+".txt")
+#     if f"@{bot_name} /Name:" in name:
+#         name = name.replace(f"@{bot_name} /Name:", "")
+#         update_info(path, 2, f"{name}")
+#         bot_methods.send_message(
+#             "نام و نام خانوادگی شما با موفقیت ثبت کردید.", chat_id)
+#         with open(path, "r", encoding="utf-8") as file:
+#             lines = file.readlines()
+#         info = ""
+#         for item in lines:
+#             info += item.replace("\n", "")
+#             info += "\n"
+#         bot_methods.send_message(
+#             f"شما با اطلاعات زیر در آسازون ثبت نام شدید:\n{info}", chat_id)
+#         bot_methods.send_message(f"{info}", -1001971910516)
 
 
-def update_info(file_path, line_number, new_data):
-    with open(file_path, "r", encoding="utf-8") as file:
-        lines = file.readlines()
-        lines[line_number] = new_data+"\n"
+# def update_info(file_path, line_number, new_data):
+#     with open(file_path, "r", encoding="utf-8") as file:
+#         lines = file.readlines()
+#         lines[line_number] = new_data+"\n"
 
-    with open(file_path, "w", encoding="utf-8") as file:
-        file.writelines(lines)
+#     with open(file_path, "w", encoding="utf-8") as file:
+#         file.writelines(lines)
