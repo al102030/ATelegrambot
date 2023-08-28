@@ -1,6 +1,6 @@
 
 from flask import request, Response
-from flaskapp import app, bot_methods
+from flaskapp import app
 
 
 @app.route("/", methods=["GET", "POST"])

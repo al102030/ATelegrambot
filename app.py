@@ -1,5 +1,5 @@
 
-from flaskapp import bot_methods, app
+from flaskapp import app, bot_methods
 from config.secrets import HOST
 
 
