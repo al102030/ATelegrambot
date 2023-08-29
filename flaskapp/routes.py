@@ -15,7 +15,7 @@ def index():
         except KeyError as error:
             print("KeyError :", error)
             text = None
-        print(f"text is >>>> {text}")
+        print(f"text is >>>> {text} and chat_id = >>> {chat_id}")
         if text:
             if "/start" in text:
                 print("/start")
