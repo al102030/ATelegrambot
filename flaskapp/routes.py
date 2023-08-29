@@ -11,6 +11,7 @@ def index():
         msg = request.get_json()
         try:
             text = msg['message']['text']
+            chat_id = msg['message']['chat']['id']
         except KeyError as error:
             print("KeyError :", error)
             text = None
@@ -18,8 +19,7 @@ def index():
         if text:
             if "/start" in text:
                 print("/start")
-                chat_id = msg['message']['chat']['id']
-                bot_methods.send_message(chat_id, 112042461)
+                # bot_methods.send_message(chat_id, 112042461)
         #         headers = {
         #             "accept": "application/json",
         #             "content-type": "application/json"
