@@ -17,10 +17,7 @@ def index():
         if text:
             if "/start" in msg["message"]["text"]:
                 chat_id = msg['message']['chat']['id']
-                headers = {
-                    "accept": "application/json",
-                    "content-type": "application/json"
-                }
+
                 params = {
                     "chat_id": chat_id,
                     "text": text
@@ -35,7 +32,7 @@ def index():
 @app.route("/token", methods=["GET", "POST"])
 def token():
     if request.method == 'GET':
-        text = request.args.get('text')
-        chat_id = request.args.get("chat_id")
-        bot_methods.send_message(f"{text} from {chat_id}", 112042461)
+        # text = request.args.get('text')
+        # chat_id = request.args.get("chat_id")
+        bot_methods.send_message("ok", 112042461)
         return "Message has been sent."
