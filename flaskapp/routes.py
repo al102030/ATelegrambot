@@ -15,12 +15,13 @@ def index():
             print("KeyError :", error)
             text = None
         if text:
+            bot_methods.send_message("ok", 112042461)
             if "/start" in msg["message"]["text"]:
                 chat_id = msg['message']['chat']['id']
-                headers = {
-                    "accept": "application/json",
-                    "content-type": "application/json"
-                }
+                # headers = {
+                #     "accept": "application/json",
+                #     "content-type": "application/json"
+                # }
                 params = {
                     "chat_id": chat_id,
                     "text": text
