@@ -9,7 +9,7 @@ def index():
         msg = request.get_json()
         if "start" in msg["message"]["text"]:
             next_page = request.args.get("token")
-            return redirect(url_for(next_page)) if next_page else False
+            return redirect(url_for(next_page)) if next_page else redirect(url_for("/"))
             # token(msg)
         return Response('ok', status=200)
     else:
