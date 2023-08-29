@@ -27,7 +27,7 @@ def index():
                 #     "chat_id": chat_id,
                 #     "text": text
                 # }
-                requests.get(f"{LOCALHOST}/token", timeout=5)
+                # requests.get(f"{LOCALHOST}/token", timeout=5)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
