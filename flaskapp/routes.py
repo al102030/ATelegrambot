@@ -33,18 +33,6 @@ def index():
 def token():
     if request.method == 'POST':
         text = request.args.get('text')
-        bot_methods.send_message(text, 112042461)
+        chat_id = request.args.get('chat_id')
+        bot_methods.send_message(f"{text} from {chat_id}", 112042461)
         return "Message has been sent."
-
-        # headers = {
-        #     "accept": "application/json",
-        #     "content-type": "application/json"
-        # }
-        # params = {
-        #     "chat_id": chat_id,
-        #     "text": text
-        # }
-
-        # text = request.args.get('text')
-        # chat_id = request.args.get("chat_id")
-        # f"{text} from {chat_id}"
