@@ -7,7 +7,7 @@ from flaskapp import app, bot_methods
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-        if "start" in msg:
+        if "start" in str(msg):
             print("Start")
             return redirect(url_for("token"))
         return Response('ok', status=200)
