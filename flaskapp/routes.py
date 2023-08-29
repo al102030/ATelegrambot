@@ -27,7 +27,8 @@ def index():
                 #     "chat_id": chat_id,
                 #     "text": text
                 # }
-                requests.get(f"{LOCALHOST}/token", timeout=5)
+                response = requests.get(f"{LOCALHOST}/token", timeout=5)
+                print(response)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
@@ -36,7 +37,8 @@ def index():
 @app.route("/token", methods=["GET", "POST"])
 def token():
     if request.method == 'GET':
-        text = request.args.get('text')
-        chat_id = request.args.get("chat_id")
-        bot_methods.send_message(f"{text} from {chat_id}", 112042461)
+        # text = request.args.get('text')
+        # chat_id = request.args.get("chat_id")
+        # f"{text} from {chat_id}"
+        bot_methods.send_message("token route", 112042461)
         return "Message has been sent."
