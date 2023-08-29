@@ -1,5 +1,5 @@
 
-from flask import request, Response, render_template, redirect, url_for
+from flask import request, Response, render_template  # , redirect, url_for
 from flaskapp import app, bot_methods
 
 
@@ -9,7 +9,10 @@ def index():
         msg = request.get_json()
         if "start" in msg["message"]["text"]:
             # return redirect(url_for("token"))
-            token(msg)
+            with app.test_client() as client:
+                response = client.get('/token')
+                print(response)
+            # token(msg)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
