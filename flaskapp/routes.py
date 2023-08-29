@@ -10,7 +10,7 @@ def index():
         msg = request.get_json()
         if "start" in msg["message"]["text"]:
             response = requests.get("http://127.0.0.1:5030/token", timeout=20)
-            # print(response)
+            print(response)
             # token(msg)
         return Response('ok', status=200)
     else:
@@ -21,3 +21,4 @@ def index():
 def token():
     if request.method == 'GET':
         bot_methods.send_message("msg", 112042461)
+        return True
