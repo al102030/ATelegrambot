@@ -16,9 +16,9 @@ def index():
             text = None
         print(text)
         if text:
-            bot_methods.send_message(msg, 112042461)
-        #     if "/start" in msg["message"]["text"]:
-        #         chat_id = msg['message']['chat']['id']
+            if "/start" in text:
+                chat_id = msg['message']['chat']['id']
+                bot_methods.send_message(chat_id, 112042461)
         #         headers = {
         #             "accept": "application/json",
         #             "content-type": "application/json"
