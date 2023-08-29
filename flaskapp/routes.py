@@ -1,7 +1,7 @@
 
 import requests
-from config.secrets import LOCALHOST
 from flask import request, Response, render_template
+from config.secrets import LOCALHOST
 from flaskapp import app, bot_methods
 
 
