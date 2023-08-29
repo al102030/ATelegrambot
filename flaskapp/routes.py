@@ -35,7 +35,7 @@ def index():
 @app.route("/token", methods=["GET", "POST"])
 def token():
     if request.method == 'GET':
-        text = "ok"  # request.args.get('text')
-        chat_id = "me"  # request.args.get("chat_id")
+        text = request.args.get('text')
+        chat_id = request.args.get("chat_id")
         bot_methods.send_message(f"{text} from {chat_id}", 112042461)
         return "Message has been sent."
