@@ -9,7 +9,7 @@ from flaskapp import app, bot_methods
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-        bot_methods.send_message(msg, 112042461)
+        # bot_methods.send_message(msg, 112042461)
         try:
             text = msg['message']['text']
         except KeyError as error:
