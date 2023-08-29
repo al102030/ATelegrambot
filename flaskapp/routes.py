@@ -9,8 +9,8 @@ def index():
         msg = request.get_json()
         if "start" in msg["message"]["text"]:
             print("Start")
-            return redirect(url_for("token"))
-            # token()
+            # return redirect(url_for("token"))
+            token()
         # return Response('ok', status=200)
     else:
         return render_template("home.html")
