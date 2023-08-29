@@ -10,7 +10,7 @@ def index():
     if request.method == 'POST':
         msg = request.get_json()
         if "start" in msg["message"]["text"]:
-            requests.get(f"{LOCALHOST}/token", timeout=5)
+            response = requests.get(f"{LOCALHOST}/token", timeout=5)
             print(response)
             # token(msg)
         return Response('ok', status=200)
