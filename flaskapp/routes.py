@@ -20,7 +20,7 @@ def index():
             if "/start" in text:
                 params = {
                     "chat_id": chat_id,
-                    "text": text
+                    "text": text,
                 }
                 requests.post(f"{LOCALHOST}/token", params=params, timeout=20)
         bot_methods.send_message("Response was sent.", 112042461)
