@@ -15,7 +15,7 @@ def index():
         except KeyError as error:
             print("KeyError :", error)
             text = None
-        print(text)
+        print(f"text is >>>> {text}")
         if text:
             if "/start" in text:
                 print("/start")
