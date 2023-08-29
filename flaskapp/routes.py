@@ -14,6 +14,6 @@ def index():
         return render_template("home.html")
 
 
-@app.route("/token", method=["GET", "POST"])
+@app.route("/token", methods=["GET", "POST"])
 def token():
     bot_methods.send_message("it works!", 112042461)
