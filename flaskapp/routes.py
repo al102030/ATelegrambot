@@ -17,6 +17,7 @@ def index():
         print(text)
         if text:
             if "/start" in text:
+                print("/start")
                 chat_id = msg['message']['chat']['id']
                 bot_methods.send_message(chat_id, 112042461)
         #         headers = {
