@@ -8,8 +8,7 @@ def index():
     if request.method == 'POST':
         msg = request.get_json()
         if "start" in msg["message"]["text"]:
-            next_page = request.args.get("token")
-            return redirect(url_for(next_page)) if next_page else redirect(url_for("/"))
+            request("POST", "/token")
             # token(msg)
         return Response('ok', status=200)
     else:
@@ -17,6 +16,6 @@ def index():
 
 
 @app.route("/token", methods=["GET", "POST"])
-def token(msg):
+def token():
     if request.method == 'POST':
-        bot_methods.send_message(msg, 112042461)
+        bot_methods.send_message("msg", 112042461)
