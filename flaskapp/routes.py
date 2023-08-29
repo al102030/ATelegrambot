@@ -20,7 +20,7 @@ def index():
             if "/start" in text:
                 params = {
                     "chat_id": chat_id,
-                    "text": text,
+                    "text": text
                 }
                 requests.post(f"{LOCALHOST}/token", params=params, timeout=20)
         bot_methods.send_message("Response was sent.", 112042461)
@@ -33,6 +33,6 @@ def index():
 def token():
     if request.method == 'POST':
         text = request.args.get('text')
-        chat_id = request.args.get('chat_id')
-        bot_methods.send_message(f"{text} from {chat_id}", 112042461)
+        # chat_id = request.args.get('chat_id')
+        bot_methods.send_message(f"{text} from me", 112042461)
         return "Message has been sent."
