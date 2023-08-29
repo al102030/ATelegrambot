@@ -32,7 +32,8 @@ def index():
 @app.route("/token", methods=["GET", "POST"])
 def token():
     if request.method == 'POST':
-        bot_methods.send_message("token route", 112042461)
+        text = request.args.get('text')
+        bot_methods.send_message(text, 112042461)
         return "Message has been sent."
 
         # headers = {
