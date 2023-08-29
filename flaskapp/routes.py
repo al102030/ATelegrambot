@@ -1,5 +1,6 @@
 
 import requests
+from config.secrets import LOCALHOST
 from flask import request, Response, render_template
 from flaskapp import app, bot_methods
 
@@ -9,7 +10,7 @@ def index():
     if request.method == 'POST':
         msg = request.get_json()
         if "start" in msg["message"]["text"]:
-            requests.get("/token", timeout=5)
+            requests.get(f"{LOCALHOST}/token", timeout=5)
             # print(response)
             # token(msg)
         return Response('ok', status=200)
