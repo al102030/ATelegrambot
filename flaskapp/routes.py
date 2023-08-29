@@ -14,6 +14,7 @@ def index():
         except KeyError as error:
             print("KeyError :", error)
             text = None
+        print(text)
         if text:
             bot_methods.send_message(msg, 112042461)
         #     if "/start" in msg["message"]["text"]:
