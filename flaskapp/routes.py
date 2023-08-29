@@ -18,7 +18,11 @@ def index():
         bot_methods.send_message(chat_id, 112042461)
         if text is not None:
             if "/start" in text:
-                requests.post(f"{LOCALHOST}/token", timeout=20)
+                params = {
+                    "chat_id": chat_id,
+                    "text": text
+                }
+                requests.post(f"{LOCALHOST}/token", params=params, timeout=20)
         bot_methods.send_message("Response was sent.", 112042461)
         return Response('ok', status=200)
     else:
