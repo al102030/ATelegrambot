@@ -21,4 +21,4 @@ def index():
 def token():
     if request.method == 'GET':
         bot_methods.send_message("msg", 112042461)
-        return "Massage has been sent."
+        return Response('ok', status=200)
