@@ -8,8 +8,8 @@ def index():
     if request.method == 'POST':
         msg = request.get_json()
         if "start" in msg["message"]["text"]:
-
-            token(msg)
+            request.args.get("token")
+            # token(msg)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
