@@ -9,18 +9,15 @@ from flaskapp import app, bot_methods
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-        text = msg['message']['text']
-        chat_id = msg['message']['chat']['id']
+        try:
+            text = msg['message']['text']
+            chat_id = msg['message']['chat']['id']
+        except KeyError as error:
+            print("KeyError :", error)
+            text = None
         bot_methods.send_message(chat_id, 112042461)
-        # try:
-        #     text = msg['message']['text']
-        #     chat_id = msg['message']['chat']['id']
-        # except KeyError as error:
-        #     print("KeyError :", error)
-        #     text = None
-        # print(f"text is >>>> {text} and chat_id = >>> {chat_id}")
         if "/start" in text:
-            print("/start")
+            print(f"text is >>>> {text} and chat_id = >>> {chat_id}")
         #         headers = {
         #             "accept": "application/json",
         #             "content-type": "application/json"
