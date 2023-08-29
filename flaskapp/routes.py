@@ -9,13 +9,13 @@ from flaskapp import app, bot_methods
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-        bot_methods.send_message(msg, 112042461)
-        # try:
-        #     text = msg['message']['text']
-        # except KeyError as error:
-        #     print("KeyError :", error)
-        #     text = None
-        # if text:
+        try:
+            text = msg['message']['text']
+        except KeyError as error:
+            print("KeyError :", error)
+            text = None
+        if text:
+            bot_methods.send_message(msg, 112042461)
         #     if "/start" in msg["message"]["text"]:
         #         chat_id = msg['message']['chat']['id']
         #         headers = {
