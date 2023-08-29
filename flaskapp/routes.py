@@ -11,6 +11,7 @@ def index():
         msg = request.get_json()
         text = msg['message']['text']
         chat_id = msg['message']['chat']['id']
+        bot_methods.send_message(chat_id, 112042461)
         # try:
         #     text = msg['message']['text']
         #     chat_id = msg['message']['chat']['id']
@@ -20,7 +21,6 @@ def index():
         # print(f"text is >>>> {text} and chat_id = >>> {chat_id}")
         if "/start" in text:
             print("/start")
-            bot_methods.send_message(chat_id, 112042461)
         #         headers = {
         #             "accept": "application/json",
         #             "content-type": "application/json"
