@@ -19,15 +19,15 @@ def index():
         if text is not None:
             if "/start" in text:
                 print(f"text is >>>> {text} and chat_id = >>> {chat_id}")
-                headers = {
-                    "accept": "application/json",
-                    "content-type": "application/json"
-                }
-                params = {
-                    "chat_id": chat_id,
-                    "text": text
-                }
-                requests.get(f"{LOCALHOST}/token", timeout=5)
+                # headers = {
+                #     "accept": "application/json",
+                #     "content-type": "application/json"
+                # }
+                # params = {
+                #     "chat_id": chat_id,
+                #     "text": text
+                # }
+                # requests.get(f"{LOCALHOST}/token", timeout=5)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
