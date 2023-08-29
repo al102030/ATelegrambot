@@ -9,10 +9,24 @@ from flaskapp import app, bot_methods
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-        if "start" in msg["message"]["text"]:
-            response = requests.get(f"{LOCALHOST}/token", timeout=5)
-            print(response)
-            # token(msg)
+        bot_methods.send_message(msg, 112042461)
+        try:
+            text = msg['message']['text']
+        except KeyError as error:
+            print("KeyError :", error)
+            text = None
+        if text:
+            if "/start" in msg["message"]["text"]:
+                chat_id = msg['message']['chat']['id']
+                # headers = {
+                #     "accept": "application/json",
+                #     "content-type": "application/json"
+                # }
+                payload = {
+                    "chat_id": chat_id,
+                    "text": text
+                }
+                requests.get(f"{LOCALHOST}/token", payload=payload, timeout=5)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
@@ -21,5 +35,7 @@ def index():
 @app.route("/token", methods=["GET", "POST"])
 def token():
     if request.method == 'GET':
-        bot_methods.send_message("msg", 112042461)
+        text = request.args.get('text')
+        chat_id = request.args.get("chat_id")
+        bot_methods.send_message(f"{text} from {chat_id}", 112042461)
         return "Message has been sent."
