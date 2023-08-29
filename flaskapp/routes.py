@@ -15,18 +15,18 @@ def index():
             print("KeyError :", error)
             text = None
         if text:
-            bot_methods.send_message("ok", 112042461)
             if "/start" in msg["message"]["text"]:
                 chat_id = msg['message']['chat']['id']
-                # headers = {
-                #     "accept": "application/json",
-                #     "content-type": "application/json"
-                # }
+                headers = {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                }
                 params = {
                     "chat_id": chat_id,
                     "text": text
                 }
-                requests.get(f"{LOCALHOST}/token", params=params, timeout=5)
+                requests.get(f"{LOCALHOST}/token", params=params,
+                             headers=headers, timeout=5)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
