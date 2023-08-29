@@ -1,5 +1,6 @@
 
-from flask import request, Response, render_template, redirect, url_for
+import requests
+from flask import request, Response, render_template
 from flaskapp import app, bot_methods
 
 
@@ -8,7 +9,8 @@ def index():
     if request.method == 'POST':
         msg = request.get_json()
         if "start" in msg["message"]["text"]:
-            request("POST", "/token")
+            response = requests.get("/token", timeout=20)
+            print(response.status_code)
             # token(msg)
         return Response('ok', status=200)
     else:
@@ -17,5 +19,5 @@ def index():
 
 @app.route("/token", methods=["GET", "POST"])
 def token():
-    if request.method == 'POST':
+    if request.method == 'GET':
         bot_methods.send_message("msg", 112042461)
