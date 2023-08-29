@@ -1,5 +1,5 @@
 
-from flask import request, Response, render_template
+from flask import request, Response, render_template, redirect, url_for
 from flaskapp import app, bot_methods
 
 
@@ -7,12 +7,13 @@ from flaskapp import app, bot_methods
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-        bot_methods.send_message(msg, 112042461)
+        if "start" in msg:
+            return redirect(url_for("token"))
         return Response('ok', status=200)
     else:
         return render_template("home.html")
 
 
-@app.route("/token")
-def get_token():
-    pass
+@app.route("/token", method=["GET", "POST"])
+def token():
+    bot_methods.send_message("it works!", 112042461)
