@@ -16,7 +16,7 @@ def index():
             print("KeyError :", error)
             text = None
         bot_methods.send_message(chat_id, 112042461)
-        if text:
+        if text is not None:
             if "/start" in text:
                 print(f"text is >>>> {text} and chat_id = >>> {chat_id}")
                 headers = {
