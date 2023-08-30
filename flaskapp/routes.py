@@ -9,6 +9,7 @@ from flaskapp import app, bot_methods
 def index():
     if request.method == 'POST':
         msg = request.get_json()
+        print("A Message has received!")
         try:
             text = msg['message']['text']
             chat_id = msg['message']['chat']['id']
