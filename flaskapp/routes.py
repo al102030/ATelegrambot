@@ -47,6 +47,7 @@ def token():
             }
             response = requests.post(
                 f"{LOCALHOST}/server", params=params, timeout=20)
+            print(response)
         return response
 
 
@@ -55,14 +56,13 @@ def server():
     if request.method == 'POST':
         dict1 = dict({"1": "A", "2": "B", "3": "C", "4": "D"})
         dict2 = dict({"5": "E", "6": "F", "7": "G", "8": "H"})
-        jsonStr1 = json.dumps(dict1)
-        jsonStr2 = json.dumps(dict2)
+        json_string1 = json.dumps(dict1)
+        json_string2 = json.dumps(dict2)
         text = request.args.get('text')
-        print(jsonStr1)
         if "e6fbd60e70962e97" in text:
-            return jsonStr1
+            return json_string1
         elif "4676de3ae0db1ea7" in text:
-            return jsonStr2
+            return json_string2
         else:
             return None
 
