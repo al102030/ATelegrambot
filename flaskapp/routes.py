@@ -52,11 +52,13 @@ def token():
 @app.route("/server", methods=["GET", "POST"])
 def server():
     if request.method == 'POST':
+        dict1 = dict({"1": "A", "2": "B", "3": "C", "4": "D"})
+        dict2 = dict({"5": "E", "6": "F", "7": "G", "8": "H"})
         text = request.args.get('text')
         if "e6fbd60e70962e97" in text:
-            return {"1": "A", "2": "B", "3": "C", "4": "D"}
+            return dict1
         elif "4676de3ae0db1ea7" in text:
-            return {"5": "E", "6": "F", "7": "G", "8": "H"}
+            return dict2
         else:
             return None
 
