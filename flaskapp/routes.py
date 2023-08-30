@@ -28,10 +28,7 @@ def index():
                 }
                 response = requests.post(
                     f"{LOCALHOST}/token", params=params, timeout=20)
-                print(f">>>>>>>>>>>>{str(response.content)}<<<<<<<<<<<<<")
-                print(f">>>>>>>>>>>>{response.text}<<<<<<<<<<<<<")
-                time.sleep(300)
-                if response != "Not allowed!":
+                if response.text != "Not allowed!":
                     user_select_keyboard = list_maker(response.json())
                     bot_methods.send_message_with_menu(
                         "Please select", chat_id, user_select_keyboard)
@@ -55,7 +52,7 @@ def token():
             }
             response = requests.post(
                 f"{LOCALHOST}/server", params=params, timeout=20)
-            if response != "empty":
+            if response.text != "empty":
                 return response.json()
             else:
                 return "Not allowed!"
