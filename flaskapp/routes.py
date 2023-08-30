@@ -35,6 +35,7 @@ def index():
 def token():
     if request.method == 'POST':
         text = ((request.args.get('text')).strip()).replace("/start", "")
+        print(text)
         if text is not None:
             params = {
                 "text": text,
@@ -53,7 +54,7 @@ def server():
         elif "4676de3ae0db1ea7" in text:
             return {5: "E", 6: "F", 7: "G", 8: "H"}
         else:
-            None
+            return None
 
 
 def list_maker(server_json):
