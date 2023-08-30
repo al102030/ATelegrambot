@@ -27,7 +27,6 @@ def index():
                 }
                 response = requests.post(
                     f"{LOCALHOST}/token", params=params, timeout=20)
-                print(response.json())
                 # user_select_keyboard = list_maker(response.json())
             # bot_methods.send_message_with_menu(
             #     "Please select", chat_id, user_select_keyboard)
@@ -54,10 +53,8 @@ def token():
 @app.route("/server", methods=["GET", "POST"])
 def server():
     if request.method == 'POST':
-        dict1 = dict({"1": "A", "2": "B", "3": "C", "4": "D"})
-        dict2 = dict({"5": "E", "6": "F", "7": "G", "8": "H"})
-        json_string1 = json.dumps(dict1)
-        json_string2 = json.dumps(dict2)
+        json_string1 = json.dumps({"1": "A", "2": "B", "3": "C", "4": "D"})
+        json_string2 = json.dumps({"5": "E", "6": "F", "7": "G", "8": "H"})
         text = request.args.get('text')
         if "e6fbd60e70962e97" in text:
             return json_string1
