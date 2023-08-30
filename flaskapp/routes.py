@@ -1,6 +1,7 @@
 
-import requests
 import json
+import requests
+import time
 from flask import request, Response, render_template
 from config.secrets import LOCALHOST
 from flaskapp import app, bot_methods
@@ -27,6 +28,7 @@ def index():
                 }
                 response = requests.post(
                     f"{LOCALHOST}/token", params=params, timeout=20)
+                time.sleep(300)
                 if response != "Not allowed!":
                     user_select_keyboard = list_maker(response.json())
                     bot_methods.send_message_with_menu(
@@ -44,6 +46,7 @@ def token():
     if request.method == 'POST':
         text = ((request.args.get('text')).strip()).replace("/start", "")
         print(text)
+        time.sleep(10)
         if text is not "":
             params = {
                 "text": text,
@@ -53,8 +56,10 @@ def token():
             if response != "empty":
                 return response.json()
             else:
+                print("Not allowed! 1")
                 return "Not allowed!"
         else:
+            print("Not allowed! 2")
             return "Not allowed!"
 
 
