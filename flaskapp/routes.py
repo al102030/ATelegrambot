@@ -27,7 +27,7 @@ def index():
                 }
                 response = requests.post(
                     f"{LOCALHOST}/token", params=params, timeout=20)
-                if response is not None:
+                if response != "Not allowed!":
                     user_select_keyboard = list_maker(response.json())
                     bot_methods.send_message_with_menu(
                         "Please select", chat_id, user_select_keyboard)
@@ -50,9 +50,12 @@ def token():
             }
             response = requests.post(
                 f"{LOCALHOST}/server", params=params, timeout=20)
-            return response.json()
+            if response != "empty":
+                return response.json()
+            else:
+                return "Not allowed!"
         else:
-            return None
+            return "Not allowed!"
 
 
 @app.route("/server", methods=["GET", "POST"])
@@ -66,7 +69,7 @@ def server():
         elif "4676de3ae0db1ea7" in text:
             return json_string2
         else:
-            return None
+            return "empty"
 
 
 def list_maker(server_json):
