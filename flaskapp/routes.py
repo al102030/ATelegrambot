@@ -52,7 +52,7 @@ def token():
                 f"{LOCALHOST}/server", params=params, timeout=20)
             return response.json()
         else:
-            return False
+            return None
 
 
 @app.route("/server", methods=["GET", "POST"])
