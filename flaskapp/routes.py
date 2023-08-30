@@ -47,7 +47,7 @@ def token():
             response = requests.post(
                 f"{LOCALHOST}/server", params=params, timeout=20)
             print(response)
-        return response
+        return response.json()
 
 
 @app.route("/server", methods=["GET", "POST"])
