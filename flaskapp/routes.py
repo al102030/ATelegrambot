@@ -28,6 +28,7 @@ def index():
                 }
                 response = requests.post(
                     f"{LOCALHOST}/token", params=params, timeout=20)
+                print(f">>>>>>>>>>>>{response}<<<<<<<<<<<<<")
                 time.sleep(300)
                 if response != "Not allowed!":
                     user_select_keyboard = list_maker(response.json())
@@ -56,10 +57,8 @@ def token():
             if response != "empty":
                 return response.json()
             else:
-                print("Not allowed! 1")
                 return "Not allowed!"
         else:
-            print("Not allowed! 2")
             return "Not allowed!"
 
 
