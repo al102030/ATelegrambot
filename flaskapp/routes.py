@@ -28,9 +28,9 @@ def index():
                 response = requests.post(
                     f"{LOCALHOST}/token", params=params, timeout=20)
                 print(response.json())
-                user_select_keyboard = list_maker(response.json())
-            bot_methods.send_message_with_menu(
-                "Please select", chat_id, user_select_keyboard)
+                # user_select_keyboard = list_maker(response.json())
+            # bot_methods.send_message_with_menu(
+            #     "Please select", chat_id, user_select_keyboard)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
