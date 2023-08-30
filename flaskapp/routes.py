@@ -62,7 +62,7 @@ def server():
 
 def list_maker(server_json):
     user_select_keyboard = []
-    for key, value in server_json:
+    for key, value in server_json.items():
         lst = []
         dictionary = {}
         dictionary['text'] = key
