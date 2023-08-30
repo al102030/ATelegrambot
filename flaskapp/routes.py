@@ -16,6 +16,7 @@ def index():
         except KeyError as error:
             print("KeyError :", error)
             text = None
+        print(text)
         if text is not None:
             if "/start" in text:
                 params = {
