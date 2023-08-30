@@ -53,9 +53,9 @@ def server():
     if request.method == 'POST':
         text = request.args.get('text')
         if "e6fbd60e70962e97" in text:
-            return {1: "A", 2: "B", 3: "C", 4: "D"}
+            return {"1": "A", "2": "B", "3": "C", "4": "D"}
         elif "4676de3ae0db1ea7" in text:
-            return {5: "E", 6: "F", 7: "G", 8: "H"}
+            return {"5": "E", "6": "F", "7": "G", "8": "H"}
         else:
             return None
 
