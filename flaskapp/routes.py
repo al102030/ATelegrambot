@@ -18,8 +18,8 @@ def index():
             text = None
         print(text)
         if text is not None:
+            user_select_keyboard = []
             if "/start" in text:
-                user_select_keyboard = []
                 params = {
                     "chat_id": chat_id,
                     "text": text
