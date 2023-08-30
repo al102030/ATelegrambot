@@ -33,6 +33,7 @@ def index():
                     bot_methods.send_message_with_menu(
                         "Please select", chat_id, user_select_keyboard)
                 else:
+                    print("Wrong User!")
                     bot_methods.send_message(
                         chat_id, "Wrong URL. You can't access to options.")
         return Response('ok', status=200)
