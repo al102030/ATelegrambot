@@ -1,7 +1,6 @@
 
 import json
 import requests
-import time
 from flask import request, Response, render_template
 from config.secrets import LOCALHOST
 from flaskapp import app, bot_methods
@@ -35,7 +34,7 @@ def index():
                 else:
                     print("Wrong User!")
                     bot_methods.send_message(
-                        chat_id, "Wrong URL. You can't access to options.")
+                        "Wrong URL. You can't access to options.", chat_id)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
