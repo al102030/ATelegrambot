@@ -1,5 +1,6 @@
 
 import requests
+import json
 from flask import request, Response, render_template
 from config.secrets import LOCALHOST
 from flaskapp import app, bot_methods
@@ -24,10 +25,10 @@ def index():
                     "chat_id": chat_id,
                     "text": text
                 }
-                response = requests.post(
+                requests.post(
                     f"{LOCALHOST}/token", params=params, timeout=20)
-                print(type(response))
-                user_select_keyboard = list_maker(response)
+                jsonStr = requests.get_json()
+                user_select_keyboard = list_maker(jsonStr)
             bot_methods.send_message_with_menu(
                 "Please select", chat_id, user_select_keyboard)
         return Response('ok', status=200)
@@ -56,9 +57,9 @@ def server():
         dict2 = dict({"5": "E", "6": "F", "7": "G", "8": "H"})
         text = request.args.get('text')
         if "e6fbd60e70962e97" in text:
-            return dict1
+            return json.dumps(dict1)
         elif "4676de3ae0db1ea7" in text:
-            return dict2
+            return json.dumps(dict2)
         else:
             return None
 
