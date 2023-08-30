@@ -44,7 +44,7 @@ def token():
     if request.method == 'POST':
         text = ((request.args.get('text')).strip()).replace("/start", "")
         print(text)
-        if text is not None:
+        if text is not "":
             params = {
                 "text": text,
             }
