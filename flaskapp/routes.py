@@ -27,13 +27,13 @@ def index():
                 }
                 response = requests.post(
                     f"{LOCALHOST}/token", params=params, timeout=20)
-                # if response != "Not allowed!":
-                #     user_select_keyboard = list_maker(response.json())
-                #     bot_methods.send_message_with_menu(
-                #         "Please select", chat_id, user_select_keyboard)
-                # else:
-                #     bot_methods.send_message(
-                #         chat_id, "Wrong URL. You can't access to options.")
+                if response != "Not allowed!":
+                    user_select_keyboard = list_maker(response.json())
+                    bot_methods.send_message_with_menu(
+                        "Please select", chat_id, user_select_keyboard)
+                else:
+                    bot_methods.send_message(
+                        chat_id, "Wrong URL. You can't access to options.")
         return Response('ok', status=200)
     else:
         return render_template("home.html")
