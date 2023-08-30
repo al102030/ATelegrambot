@@ -62,11 +62,11 @@ def server():
 
 def list_maker(server_json):
     user_select_keyboard = []
-    for item in server_json:
+    for key, value in server_json:
         lst = []
         dictionary = {}
-        dictionary['text'] = item.key()
-        dictionary['callback_data'] = item.value()
+        dictionary['text'] = key
+        dictionary['callback_data'] = value
         lst.append(dictionary)
         user_select_keyboard.append(lst)
     return user_select_keyboard
