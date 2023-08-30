@@ -53,6 +53,7 @@ def token():
 @app.route("/server", methods=["GET", "POST"])
 def server():
     if request.method == 'POST':
+        print("Server has started!")
         dict1 = dict({"1": "A", "2": "B", "3": "C", "4": "D"})
         dict2 = dict({"5": "E", "6": "F", "7": "G", "8": "H"})
         text = request.args.get('text')
