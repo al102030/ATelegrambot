@@ -62,7 +62,7 @@ def token():
 @app.route("/server", methods=["GET", "POST"])
 def server():
     if request.method == 'POST':
-        json_string1 = json.dumps({"1": "A", "2": "B", "3": "C", "4": "D"})
+        json_string1 = json.dumps({"1": "A", "2": "B", "3": "C", "4": "Dddd"})
         json_string2 = json.dumps({"5": "E", "6": "F", "7": "G", "8": "H"})
         text = request.args.get('text')
         if "e6fbd60e70962e97" in text:
