@@ -9,6 +9,7 @@ from flaskapp import app, bot_methods
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == 'POST':
+        bot_methods.send_message(msg, 112042461)
         msg = request.get_json()
         print("A Message has received!")
         try:
