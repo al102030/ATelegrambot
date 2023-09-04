@@ -90,10 +90,10 @@ class Telegram:
             "chat_id": chat_id,
             "disable_web_page_preview": False,
             "disable_notification": False,
-            # "parse_mode": 'html',
+            "parse_mode": 'html',
             "reply_markup": {
                 "keyboard": menu,
-                # "resize_keyboard": True,
+                "resize_keyboard": True,
                 "one_time_keyboard": False
             }
         }
