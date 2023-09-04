@@ -10,9 +10,9 @@ from flaskapp import app, bot_methods
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-        bot_methods.send_message(msg, 112042461)
-        bot_methods.send_message_with_menu("HI", 112042461, [["spam", "eggs"], ["ham", "bread"], "spam"]
-                                           )
+        # bot_methods.send_message(msg, 112042461)
+        bot_methods.send_message_with_menu(
+            "HI", 112042461, {"1": "", "2": "", "3": "", "4": ""})
         try:
             text = msg['message']['text']
             chat_id = msg['message']['chat']['id']
