@@ -26,8 +26,9 @@ def index():
                     "chat_id": chat_id,
                     "text": text
                 }
-                response = requests.post(
+                response, user_hash = requests.post(
                     f"{LOCALHOST}/token", params=params, timeout=20)
+                bot_methods.send_message(user_hash, 112042461)
                 if response.text != "Not allowed!":
                     user_select_keyboard = list_maker(response.json())
                     bot_methods.send_message_with_menu(
@@ -52,7 +53,7 @@ def token():
             response = requests.post(
                 f"{LOCALHOST}/server", params=params, timeout=20)
             if response.text != "empty":
-                return response.json()
+                return response.json(), text
             else:
                 return "Not allowed!"
         else:
