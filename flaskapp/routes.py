@@ -89,7 +89,7 @@ t.me/naderstone
 eitaa.com/naderstone"""
         greet_text2 = "Some text"
         json_string1 = json.dumps(
-            {"menu": {"1": "A", "2": "B", "3": "C", "4": "D"}, "greet": greet_text1})
+            {"menu": {"تماس با ما": "A", "درباره ما": "B", "فروشگاه": "C", "مشاهده محصولات": "D"}, "greet": greet_text1})
         json_string2 = json.dumps(
             {"menu": {"5": "E", "6": "F", "7": "G", "8": "H"}, "greet": greet_text2})
         print(json_string1)
