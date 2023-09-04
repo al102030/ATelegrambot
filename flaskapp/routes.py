@@ -28,7 +28,8 @@ def index():
                     response = requests.post(
                         f"{LOCALHOST}/token", params=params, timeout=20)
                     if response.text != "Not allowed!":
-                        user_select_keyboard = list_maker(response.json())
+                        user_select_keyboard = list_maker(
+                            response.json()["menu"])
                         bot_methods.send_message_with_menu(
                             "Please select", chat_id, user_select_keyboard)
                     else:
@@ -62,7 +63,8 @@ def token():
 @app.route("/server", methods=["GET", "POST"])
 def server():
     if request.method == 'POST':
-        json_string1 = json.dumps({"1": "A", "2": "B", "3": "C", "4": "D"})
+        json_string1 = json.dumps(
+            {"menu": {"1": "A", "2": "B", "3": "C", "4": "D"}, "greet": "Some text"})
         json_string2 = json.dumps({"5": "E", "6": "F", "7": "G", "8": "H"})
         # greet_text1 =
         print(json_string1)
