@@ -31,7 +31,7 @@ def index():
                         user_select_keyboard = list_maker(
                             response.json()["menu"])
                         bot_methods.send_message_with_menu(
-                            "Please select", chat_id, user_select_keyboard)
+                            response.json()["greet"], chat_id, user_select_keyboard)
                     else:
                         print("Wrong User!")
                         bot_methods.send_message(
@@ -63,10 +63,35 @@ def token():
 @app.route("/server", methods=["GET", "POST"])
 def server():
     if request.method == 'POST':
+        greet_text1 = """خوش آمد:
+باسلام خدمت شما دوست گرامی🌹
+بابت همراهی شما بسیار خرسندیم
+
+مجموعه صنایع سنگ نادر ، به جهت راحتی شما این ربات را طراحی نموده تا شما با خیال راحت و هرکجا که هستید ، فعالیت‌ها و نمونه‌کارهای مجموعه را مشاهده بفرمایید
+
+
+اطلاعات مورد نیاز در آیتم ها
+واحد فروش ۰۳۵۳۶۲۴۲۴۱۴
+مدیریت ۰۹۱۳۲۵۱۳۰۳۰
+شماره پاسخگو ۰۹۱۳۳۵۳۳۱۰۶
+شماره واتساپ
+۰۹۱۳۲۵۱۳۰۳۰
+آیدی تلگرام
+t.me/naderstone
+جهت ارتباط ، مشاوره و ثبت سفارش
+با شماره‌های زیر تماس حاصل فرمایید :
+۰۹۱۳۲۵۱۳۰۳۰
+۰۹۱۳۳۵۳۳۱۰۶
+
+آدرس کانال ایتا و تلگرام مجموعه :
+t.me/naderstone
+
+eitaa.com/naderstone"""
+        greet_text2 = "Some text"
         json_string1 = json.dumps(
-            {"menu": {"1": "A", "2": "B", "3": "C", "4": "D"}, "greet": "Some text"})
-        json_string2 = json.dumps({"5": "E", "6": "F", "7": "G", "8": "H"})
-        # greet_text1 =
+            {"menu": {"1": "A", "2": "B", "3": "C", "4": "D"}, "greet": greet_text1})
+        json_string2 = json.dumps(
+            {"menu": {"5": "E", "6": "F", "7": "G", "8": "H"}, "greet": greet_text2})
         print(json_string1)
         text = request.args.get('text')
         if "e6fbd60e70962e97" in text:
