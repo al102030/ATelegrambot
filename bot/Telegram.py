@@ -93,7 +93,7 @@ class Telegram:
             # "parse_mode": 'html',
             "reply_markup": {
                 "keyboard": menu,
-                "resize_keyboard": True,
+                # "resize_keyboard": True,
                 "one_time_keyboard": False
             }
         }

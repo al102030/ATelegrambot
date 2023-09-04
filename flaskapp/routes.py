@@ -11,14 +11,12 @@ def index():
     if request.method == 'POST':
         msg = request.get_json()
         bot_methods.send_message(msg, 112042461)
-        print("A Message has received!")
         try:
             text = msg['message']['text']
             chat_id = msg['message']['chat']['id']
         except KeyError as error:
             print("KeyError :", error)
             text = None
-        print(text)
         if text is not None:
             user_select_keyboard = []
             if "/start" in text:
@@ -82,5 +80,4 @@ def list_maker(server_json):
         dictionary['callback_data'] = value
         lst.append(dictionary)
         user_select_keyboard.append(lst)
-        print(user_select_keyboard)
     return user_select_keyboard
