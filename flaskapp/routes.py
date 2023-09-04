@@ -30,7 +30,7 @@ def index():
                     f"{LOCALHOST}/token", params=params, timeout=20)
                 if response.text != "Not allowed!":
                     user_select_keyboard = list_maker(response.json())
-                    bot_methods.send_message_with_keyboard(
+                    bot_methods.send_message_with_menu(
                         "Please select", chat_id, user_select_keyboard)
                 else:
                     print("Wrong User!")
