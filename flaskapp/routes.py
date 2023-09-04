@@ -10,9 +10,7 @@ from flaskapp import app, bot_methods
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-        bot_methods.send_message(msg, 112042461)
-        # bot_methods.send_message_with_menu(
-        #     "HI", 112042461, {"1": "One", "2": "Two", "3": "Three", "4": "Four"})
+        # bot_methods.send_message(msg, 112042461)
         try:
             text = msg['message']['text']
             chat_id = msg['message']['chat']['id']
@@ -27,17 +25,20 @@ def index():
                     "text": text
                 }
                 user_hash = (text.strip()).replace("/start", "")
-                bot_methods.send_message(user_hash, 112042461)
-                response = requests.post(
-                    f"{LOCALHOST}/token", params=params, timeout=20)
-                if response.text != "Not allowed!":
-                    user_select_keyboard = list_maker(response.json())
-                    bot_methods.send_message_with_menu(
-                        "Please select", chat_id, user_select_keyboard)
+                if user_hash != "":
+                    response = requests.post(
+                        f"{LOCALHOST}/token", params=params, timeout=20)
+                    if response.text != "Not allowed!":
+                        user_select_keyboard = list_maker(response.json())
+                        bot_methods.send_message_with_menu(
+                            "Please select", chat_id, user_select_keyboard)
+                    else:
+                        print("Wrong User!")
+                        bot_methods.send_message(
+                            "Wrong URL. Your access code is not correct!.", chat_id)
                 else:
-                    print("Wrong User!")
                     bot_methods.send_message(
-                        "Wrong URL. You can't access to options.", chat_id)
+                        "Wrong URL. For access the bot options please connect us.\nThank you.", chat_id)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
@@ -46,17 +47,14 @@ def index():
 @app.route("/token", methods=["GET", "POST"])
 def token():
     if request.method == 'POST':
-        text = ((request.args.get('text')).strip()).replace("/start", "")
-        if text is not "":
-            params = {
-                "text": text,
-            }
-            response = requests.post(
-                f"{LOCALHOST}/server", params=params, timeout=20)
-            if response.text != "empty":
-                return response.json()
-            else:
-                return "Not allowed!"
+        text = request.args.get('text')
+        params = {
+            "text": text,
+        }
+        response = requests.post(
+            f"{LOCALHOST}/server", params=params, timeout=20)
+        if response.text != "empty":
+            return response.json()
         else:
             return "Not allowed!"
 
