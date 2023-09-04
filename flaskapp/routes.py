@@ -10,7 +10,6 @@ from flaskapp import app, bot_methods
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-        # bot_methods.send_message(msg, 112042461)
         try:
             text = msg['message']['text']
             chat_id = msg['message']['chat']['id']
@@ -35,10 +34,11 @@ def index():
                     else:
                         print("Wrong User!")
                         bot_methods.send_message(
-                            "Wrong URL. Your access code is not correct!.", chat_id)
+                            "Wrong URL. Your access code is incorrect!.", chat_id)
                 else:
+                    print("Not premium user!")
                     bot_methods.send_message(
-                        "Wrong URL. For access the bot options please connect us.\nThank you.", chat_id)
+                        "Wrong URL. To access the bot options, please connect with us.\nThank you.", chat_id)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
@@ -64,6 +64,8 @@ def server():
     if request.method == 'POST':
         json_string1 = json.dumps({"1": "A", "2": "B", "3": "C", "4": "D"})
         json_string2 = json.dumps({"5": "E", "6": "F", "7": "G", "8": "H"})
+        # greet_text1 =
+        print(json_string1)
         text = request.args.get('text')
         if "e6fbd60e70962e97" in text:
             return json_string1
@@ -83,3 +85,8 @@ def list_maker(server_json):
         lst.append(dictionary)
         user_select_keyboard.append(lst)
     return user_select_keyboard
+
+
+@app.route("/greet", methods=["GET", "POST"])
+def greet():
+    pass
