@@ -39,8 +39,9 @@ def index():
                 response = requests.post(
                     f"{LOCALHOST}/server", params=params, timeout=20)
                 msg = response.json()
+                type = msg["type"]
                 bot_methods.send_message(
-                    msg, chat_id)
+                    type, chat_id)
 
         return Response('ok', status=200)
     else:
