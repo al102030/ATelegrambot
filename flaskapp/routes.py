@@ -79,19 +79,6 @@ def list_maker(server_json):
     return user_select_keyboard
 
 
-# @app.route("/token", methods=["GET", "POST"])
-# def token():
-#     if request.method == 'POST':
-#         chat_id = request.args.get('chat_id')
-#         params = {
-#             "action": "token",
-#             "chat_id": chat_id,
-#         }
-#         response = requests.post(
-#             f"{LOCALHOST}/server", params=params, timeout=20)
-#         return response.text if response is not None else "Not exist"
-
-
 # =======================================================================================
 
 @app.route("/server", methods=["GET", "POST"])
