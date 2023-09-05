@@ -127,5 +127,4 @@ def server():
                 return "empty"
         elif action == "token":
             chat_id = request.args.get('chat_id')
-            if chat_id == 112042461:
-                return "e6fbd60e70962e97"
+            return "e6fbd60e70962e97" if chat_id == 112042461 else "Wrong ID!"
