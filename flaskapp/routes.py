@@ -131,8 +131,9 @@ def server():
             chat_id = request.args.get('chat_id')
             text = request.args.get('chat_id')
             if text == "text":
-                return json.dumps(
+                data = json.dumps(
                     {"type": "inline_keyboard", "text": "Some text to user"})
+                return data
             elif text == "menu1":
                 dictionary = json.dumps(
                     {"menu": {"A": "O1", "B": "O2", "C": "O3", "D": "O4"}, "type": "inline_keyboard", "text": "Please select one."})
