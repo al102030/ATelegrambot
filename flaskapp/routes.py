@@ -137,7 +137,7 @@ def server():
                 return "empty"
         elif action == "text":
             chat_id = request.args.get('chat_id')
-            text = request.args.get('text')
+            text = request.args.get('text').lower()
             print(text)
             if text == "text":
                 data = json.dumps(
