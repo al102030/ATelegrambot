@@ -38,7 +38,7 @@ def index():
                           "chat_id": chat_id, "text": text}
                 response = requests.post(
                     f"{LOCALHOST}/server", params=params, timeout=20)
-                msg = response.get_json()
+                msg = response.json()
                 bot_methods.send_message(
                     msg, chat_id)
 
