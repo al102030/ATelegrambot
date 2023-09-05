@@ -38,18 +38,19 @@ def index():
                           "chat_id": chat_id, "text": text}
                 response = requests.post(
                     f"{LOCALHOST}/server", params=params, timeout=20)
-                msg = response.json()
-                if msg["type"] == "text":
-                    bot_methods.send_message(
-                        msg["text"], chat_id)
-                elif msg["type"] == "inline_keyboard":
-                    keyboard = list_maker(msg["menu"])
-                    bot_methods.send_message_with_keyboard(
-                        msg["text"], chat_id, keyboard)
-                elif msg["type"] == "inline_menu":
-                    keyboard = list_maker(msg["menu"])
-                    bot_methods.send_message_with_menu(
-                        msg["text"], chat_id, keyboard)
+                if response.text != "wrong text":
+                    msg = response.json()
+                    if msg["type"] == "text":
+                        bot_methods.send_message(
+                            msg["text"], chat_id)
+                    elif msg["type"] == "inline_keyboard":
+                        keyboard = list_maker(msg["menu"])
+                        bot_methods.send_message_with_keyboard(
+                            msg["text"], chat_id, keyboard)
+                    elif msg["type"] == "inline_menu":
+                        keyboard = list_maker(msg["menu"])
+                        bot_methods.send_message_with_menu(
+                            msg["text"], chat_id, keyboard)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
@@ -151,3 +152,5 @@ def server():
                 dictionary = json.dumps(
                     {"menu": {"A": "O1", "B": "O2", "C": "O3", "D": "O4"}, "type": "inline_menu", "text": "Please select one."})
                 return dictionary
+            else:
+                return "wrong text"
