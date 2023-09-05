@@ -37,6 +37,8 @@ def index():
                 params = {"chat_id": chat_id, }
                 response = requests.post(
                     f"{LOCALHOST}/token", params=params, timeout=20)
+                bot_methods.send_message(
+                    response.text, chat_id)
 
         return Response('ok', status=200)
     else:
@@ -76,7 +78,7 @@ def token():
         }
         response = requests.post(
             f"{LOCALHOST}/server", params=params, timeout=20)
-        return response if response is not None else "Not exist"
+        return response.text if response is not None else "Not exist"
 
 
 # =======================================================================================
