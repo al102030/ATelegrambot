@@ -34,11 +34,13 @@ def index():
                     bot_methods.send_message(
                         "Wrong URL. To access the bot options, please connect with us.\nThank you.", chat_id)
             else:
-                params = {"chat_id": chat_id, }
+                params = {"action": "text",
+                          "chat_id": chat_id, "text": user_hash}
                 response = requests.post(
-                    f"{LOCALHOST}/token", params=params, timeout=20)
+                    f"{LOCALHOST}/server", params=params, timeout=20)
+                msg = response.get_json()
                 bot_methods.send_message(
-                    response.text, chat_id)
+                    msg, chat_id)
 
         return Response('ok', status=200)
     else:
@@ -68,17 +70,17 @@ def list_maker(server_json):
     return user_select_keyboard
 
 
-@app.route("/token", methods=["GET", "POST"])
-def token():
-    if request.method == 'POST':
-        chat_id = request.args.get('chat_id')
-        params = {
-            "action": "token",
-            "chat_id": chat_id,
-        }
-        response = requests.post(
-            f"{LOCALHOST}/server", params=params, timeout=20)
-        return response.text if response is not None else "Not exist"
+# @app.route("/token", methods=["GET", "POST"])
+# def token():
+#     if request.method == 'POST':
+#         chat_id = request.args.get('chat_id')
+#         params = {
+#             "action": "token",
+#             "chat_id": chat_id,
+#         }
+#         response = requests.post(
+#             f"{LOCALHOST}/server", params=params, timeout=20)
+#         return response.text if response is not None else "Not exist"
 
 
 # =======================================================================================
@@ -125,6 +127,17 @@ def server():
                 return json_string2
             else:
                 return "empty"
-        elif action == "token":
+        elif action == "text":
             chat_id = request.args.get('chat_id')
-            return "e6fbd60e70962e97" if chat_id == "112042461" else "Wrong ID!"
+            text = request.args.get('chat_id')
+            if text == "text":
+                return json.dumps(
+                    {"type": "inline_keyboard", "text": "Some text to user"})
+            elif text == "menu1":
+                dictionary = json.dumps(
+                    {"menu": {"A": "O1", "B": "O2", "C": "O3", "D": "O4"}, "type": "inline_keyboard", "text": "Please select one."})
+                return dictionary
+            elif text == "menu2":
+                dictionary = json.dumps(
+                    {"menu": {"A": "O1", "B": "O2", "C": "O3", "D": "O4"}, "type": "inline_menu", "text": "Please select one."})
+                return dictionary
