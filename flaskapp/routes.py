@@ -129,7 +129,7 @@ def server():
                 return "empty"
         elif action == "text":
             chat_id = request.args.get('chat_id')
-            text = request.args.get('chat_id')
+            text = request.args.get('text')
             if text == "text":
                 data = json.dumps(
                     {"type": "inline_keyboard", "text": "Some text to user"})
