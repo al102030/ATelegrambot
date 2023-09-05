@@ -39,10 +39,17 @@ def index():
                 response = requests.post(
                     f"{LOCALHOST}/server", params=params, timeout=20)
                 msg = response.json()
-                type = msg["type"]
-                bot_methods.send_message(
-                    type, chat_id)
-
+                if msg["type"] == "text":
+                    bot_methods.send_message(
+                        msg["text"], chat_id)
+                elif msg["type"] == "inline_keyboard":
+                    keyboard = list_maker(msg["menu"])
+                    bot_methods.send_message_with_keyboard(
+                        msg["text"], chat_id, keyboard)
+                elif msg["type"] == "inline_menu":
+                    keyboard = list_maker(msg["menu"])
+                    bot_methods.send_message_with_menu(
+                        msg["text"], chat_id, keyboard)
         return Response('ok', status=200)
     else:
         return render_template("home.html")
@@ -134,7 +141,7 @@ def server():
             print(text)
             if text == "text":
                 data = json.dumps(
-                    {"type": "inline_keyboard", "text": "Some text to user"})
+                    {"type": "text", "text": "Some text to user"})
                 return data
             elif text == "menu1":
                 dictionary = json.dumps(
