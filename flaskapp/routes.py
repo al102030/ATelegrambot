@@ -35,7 +35,7 @@ def index():
                         "Wrong URL. To access the bot options, please connect with us.\nThank you.", chat_id)
             else:
                 params = {"action": "text",
-                          "chat_id": chat_id, "text": user_hash}
+                          "chat_id": chat_id, "text": text}
                 response = requests.post(
                     f"{LOCALHOST}/server", params=params, timeout=20)
                 msg = response.get_json()
